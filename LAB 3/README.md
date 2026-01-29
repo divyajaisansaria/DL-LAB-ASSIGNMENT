@@ -1,11 +1,7 @@
 # Comparative Study of CNN Architectures, Loss Functions, and Optimization Strategies
 
 ## Project Overview
-This project focuses on implementing, training, and evaluating multiple landmark Convolutional Neural Network (CNN) architectures to analyze the impact of **network depth, dataset complexity, loss functions, and optimization strategies** on classification performance and convergence behavior.
-
-The work is divided into two parts:
-- **Part 1:** CNN architecture comparison on a complex dataset (CIFAR-10)
-- **Part 2:** Loss function and optimizer impact analysis on a simple dataset (MNIST)
+This project presents a comparative analysis of **CNN architectures, loss functions, and optimization strategies** to understand their impact on classification performance, convergence behavior, and feature representation quality.
 
 All experiments are implemented using **PyTorch** and executed on **Google Colab with GPU support**.
 
@@ -13,99 +9,81 @@ All experiments are implemented using **PyTorch** and executed on **Google Colab
 
 ## Datasets Used
 
-### Part 1 Dataset
-- **CIFAR-10**
-  - 32×32 RGB images
-  - 10 object classes
-  - Complex and noisy dataset used to analyze the effect of network depth and architecture
+- **CIFAR-10**  
+  32×32 RGB images across 10 classes. Used for analyzing architectural depth and feature representations.
 
-### Part 2 Dataset
-- **MNIST**
-  - 28×28 grayscale handwritten digit images
-  - 10 balanced classes
-  - Simple dataset used to study convergence behavior of different loss functions
+- **MNIST**  
+  28×28 grayscale handwritten digits. Used for studying loss functions and convergence behavior.
 
 ---
 
 ## Part 1: CNN Architecture Comparison (CIFAR-10)
 
 ### Objective
-To analyze how **network depth and architectural complexity** affect:
-- Classification accuracy
-- Convergence behavior
-- Computational efficiency
+To evaluate how **network depth and architectural complexity** affect model performance on a complex dataset.
 
-### Implemented Architectures
-- LeNet-5  
-- AlexNet  
-- VGGNet  
-- ResNet-50  
-- ResNet-100  
-- EfficientNet  
-- InceptionV3  
-- MobileNet  
-
-### Experimental Setup
-- CIFAR-10 dataset with normalization and data augmentation
-- Same evaluation protocol across all models
-- Multiple configurations of learning rate, optimizer, and epochs
-- Training performed under identical conditions for fair comparison
+### Architectures Implemented
+- LeNet-5
+- AlexNet
+- VGGNet
+- ResNet-50 / ResNet-100
+- EfficientNet
+- InceptionV3
+- MobileNet
 
 ### Evaluation Metrics
-- Training Accuracy
-- Testing Accuracy
-- Convergence Speed
-- Architectural Depth vs Performance
+- Training and testing accuracy
+- Convergence behavior
+- Depth vs performance trade-offs
 
 ---
 
-## Part 2: Loss Function and Optimizer Impact Study (MNIST)
+## Part 2: Loss Function and Optimizer Analysis (MNIST)
 
 ### Objective
-To study how **different loss functions and optimization strategies** influence:
-- Convergence speed
-- Final training and testing accuracy
+To study how different **loss functions and optimizers** influence convergence speed and accuracy.
 
-### Experimental Configuration
-
-| Model     | Optimizer | Epochs | Loss Function |
-|----------|----------|--------|---------------|
-| VGGNet   | Adam     | 10     | Binary Cross-Entropy (BCE) |
-| AlexNet  | SGD      | 20     | Focal Loss |
-| ResNet   | Adam     | 15     | ArcFace Loss |
-
-### Loss Functions Used
-- **Binary Cross-Entropy (BCE):** One-vs-all formulation for multi-class classification
-- **Focal Loss:** Focuses learning on hard samples
-- **ArcFace Loss:** Margin-based loss that enforces class separability in embedding space
+| Model    | Optimizer | Epochs | Loss Function |
+|---------|----------|--------|---------------|
+| VGGNet  | Adam     | 10     | BCE |
+| AlexNet | SGD      | 20     | Focal Loss |
+| ResNet  | Adam     | 15     | ArcFace Loss |
 
 ---
 
-## Results and Visualizations
+## Part 3: Feature Space Visualization (CIFAR-10)
 
-### Part 1 Results: CNN Architecture Comparison on CIFAR-10
-The following figure compares the classification accuracy of different CNN architectures on the CIFAR-10 dataset, highlighting the impact of network depth and architectural design.
+### Objective
+To visually analyze how different loss functions influence the **learned feature embeddings**, beyond accuracy metrics.
 
-![CIFAR-10 CNN Accuracy Comparison](results/accuracy_plots.png)
+### Method
+- Identical CNN backbone
+- Feature embeddings extracted from test set
+- t-SNE used for 2D visualization
+- Comparison between **Softmax** and **ArcFace** loss
 
----
+### Results
 
-### Part 2 Results: Loss Function Convergence on MNIST
-The following figure illustrates the convergence behavior of different loss functions and optimization strategies on the MNIST dataset.
+**Softmax Loss Visualization**
+![t-SNE Softmax Visualization](results/softmax.png)
 
-![MNIST Convergence Comparison](results/convergence_curves.png)
+**ArcFace Loss Visualization**
+![t-SNE ArcFace Visualization](results/arcface.png)
+
+### Observation
+Softmax loss produces overlapping and diffuse clusters, whereas ArcFace loss yields **compact and well-separated feature clusters**, highlighting the benefit of margin-based supervision.
 
 ---
 
 ## How to Run
-1. Open the notebook files in Google Colab
+1. Open the notebooks in Google Colab
 2. Enable GPU runtime
 3. Run all cells sequentially
-4. Modify dataset or configurations if required
 
 ---
 
 ## Conclusion
-This study demonstrates that **dataset complexity strongly influences model design choices**. While deep architectures and residual connections are essential for complex datasets like CIFAR-10, simpler datasets such as MNIST converge efficiently even with basic loss functions. Advanced loss functions and optimizers become increasingly valuable as task complexity increases.
+This study shows that while deep architectures improve performance on complex datasets, **loss function choice plays a critical role in feature quality**.  
+Margin-based losses such as ArcFace significantly enhance feature separability, which is essential for recognition and retrieval tasks.
 
 ---
