@@ -51,6 +51,20 @@ To study how different **loss functions and optimizers** influence convergence s
 
 ---
 
+## Results and Visualizations
+
+### Part 1 Results: CNN Architecture Comparison on CIFAR-10
+The following figure compares the classification accuracy of different CNN architectures on the CIFAR-10 dataset, highlighting the impact of network depth and architectural design.
+
+![CIFAR-10 CNN Accuracy Comparison](results/accuracy_plots.png)
+
+---
+
+### Part 2 Results: Loss Function Convergence on MNIST
+The following figure illustrates the convergence behavior of different loss functions and optimization strategies on the MNIST dataset.
+
+![MNIST Convergence Comparison](results/convergence_curves.png)
+
 ## Part 3: Feature Space Visualization (CIFAR-10)
 
 ### Objective
