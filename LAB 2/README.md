@@ -37,7 +37,7 @@ A Convolutional Neural Network (CNN) is trained under different configurations, 
 - ReLU achieves the best accuracy and fastest convergence.
 
 ### Plots
-![Activation Comparison](results/acitvation_comparizon.png)
+![Activation Comparison](results/activation_comparizon.png)
 
 ---
 
